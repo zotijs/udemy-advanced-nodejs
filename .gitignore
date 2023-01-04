@@ -3,4 +3,4 @@ nohup.out
 .DS_Store
 
 # dev envs
-dev.js
+config/dev.js

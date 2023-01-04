@@ -1,0 +1,14 @@
+services:
+  cache:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    volumes:
+      - cache:/data
+volumes:
+  cache:
+    driver: local
