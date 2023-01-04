@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchBlog } from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { fetchBlog } from "../../actions";
+import { withParams } from "../utils";
 
 class BlogShow extends Component {
   componentDidMount() {
-    this.props.fetchBlog(this.props.match.params._id);
+    this.props.fetchBlog(this.props.params._id);
   }
 
   render() {
     if (!this.props.blog) {
-      return '';
+      return "";
     }
 
     const { title, content } = this.props.blog;
@@ -24,7 +26,12 @@ class BlogShow extends Component {
 }
 
 function mapStateToProps({ blogs }, ownProps) {
-  return { blog: blogs[ownProps.match.params._id] };
+  return { blog: blogs?.[ownProps?.params?._id] };
 }
 
-export default connect(mapStateToProps, { fetchBlog })(BlogShow);
+export default compose(
+  withParams,
+  connect(mapStateToProps, { fetchBlog })
+)(BlogShow);
+
+// export default connect(mapStateToProps, { fetchBlog })(withParams(BlogShow));
