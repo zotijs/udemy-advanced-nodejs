@@ -5,3 +5,7 @@ Starting project for a course on Advanced Node @ [Udemy](https://www.udemy.com/c
 Documentation:
 
 - redis npm: https://www.npmjs.com/package/redis
+
+Commands:
+
+- cleanup redis: `client.flushall()`
